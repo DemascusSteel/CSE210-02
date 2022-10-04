@@ -2,10 +2,19 @@ using CSE21002.HiLo;
 
 namespace CSE21002
 {
-// i guess we cant use dashes in the namespace? do yall know what my namespace should be?
-// you need to put namespace in Director, which I put in, but I think that the issue might be the HiLo bit
 
+    /// <summary>
+    /// The program's entry point.
+    /// <summary>
+    class Program{
 
+        /// <param name="args">The given arguments.</param>
+        static void Main(string[] args)
+        {
+            Director director = new Director();
+            director.Play();
+        }
+    }
 
 // See https://aka.ms/new-console-template for more information
 
@@ -22,7 +31,7 @@ namespace CSE21002
 
 // a class for a deck- 
 //     att: num. of cards(52)
-//     method: draw card, remove card from deck(list?)
+//     method: draw_card, remove_card from deck(list?)
 // class for a score
 //     att: scoreValue=300
 //     method: add100, take75, displayScore
