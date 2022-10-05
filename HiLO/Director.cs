@@ -4,7 +4,8 @@ namespace CSE21002.HiLo{
 
 public class Director{
     //Director's attributes
-        
+     theScore = new score();
+
        Boolean playInput = true;
         int score = 300;
         public string Guess = "";
@@ -43,7 +44,7 @@ public class Director{
             while (choice){
                string play = Console.ReadLine();
 
-                if (play = 'y' && ScoreValue > 0){
+                if (play = 'y' && score.ScoreValue() > 0){
                     choice = false;
                     playInput = true;
                 }
