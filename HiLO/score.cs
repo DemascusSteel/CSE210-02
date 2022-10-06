@@ -1,42 +1,43 @@
+// Score class
+// Score responsibility: keep track of the score value and check
+//                       if the guess is correct
 
-
-// class for a score
-//     att: ScoreValue=300
-//     method: HiLo, UpdateScore, DisplayScore
 namespace CSE21002.HiLo{
-    Director director = new Director();
+
     public class Score{
-        public int ScoreValue = 300;
+        // Score attributes: the value and guess status.
+        public int ScoreValue = 300; // stores the value of score
+        public bool IsCorrect = true; // variable to determine if the user guess is correct
         
-        public bool HiorLO(){
+        public void IsGuessCorrect(int PrevDraw, int Draw, string Guess){
+            // this method checks the relationship of the cards and if the guess of
+            // "h" or "l" is correct. 
+            bool higher = false; // statement of the card relationship
 
-            bool higher = false;
-
-            if (PrevDraw > Draw){
-                higher =  true; // true = high, false = low
+            if (PrevDraw < Draw){
+                higher =  true; // true = higher, false = lower
             }
             else {
                 higher = false;
             }  
 
-            if (director.Guess == "h" && higher == true || director.Guess == "l" && higher == false )
-            {
-                bool correct = true;
+            if (Guess == "h" && higher == true || Guess == "l" && higher == false )
+            { // if the guess is the same as the card relationship, then the guess is correct
+                IsCorrect = true;
             }
             else
-            {
-                correct = false;
+            {// if not, the guess is false 
+                IsCorrect = false;
             }            
         }
         public void UpdateScore(){
-            if (correct = true){
+            // depending on the state of IsCorrect, this method will add or subtract from the score value
+            if (IsCorrect == true){
                 ScoreValue += 100;
             }
             else{
                 ScoreValue -= 75;
             }
-            
-            Console.WriteLine($"Your new score is {ScoreValue}")
                 
         }
         

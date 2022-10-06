@@ -4,22 +4,21 @@
 using System;
 public class Deck
 {
+//Incorporate the random object    
         Random rand = new Random();
         
-    
+        //create a new number to keep track of the previous number and set current num to zero
         public int num = 0;
         public int PrevDraw = 0;
 
-        public Card(){}
 
-
+        //previous num is printed and the new number is generated
         public void draw(){
             PrevDraw = num;
             num = rand.Next(1, 14);
         }
 
-
 }
 
-//nevermind this now :) //Something to pop items from the list
+
 
