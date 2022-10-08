@@ -26,6 +26,9 @@ public class Director{
             // draw card
             // this while loop is the main loop and only stops when IsPlaying = False\
 
+            deck.draw();
+            deck.draw();
+
             while (IsPlaying == true)
             {
                 //game loop
@@ -37,59 +40,65 @@ public class Director{
                 }
         public string getInputs(){
             //while player continue answer y or score > 0
-            
-            Console.Write("The previous card was []");
 
-            Console.Write("Would you like to enter another guess? Enter y or n > ");
+            Console.WriteLine("Ready to play? y/n:  ");
             bool choice = true;
             IsPlaying = true; // if they want to keep playing
             while (choice){
                string play = Console.ReadLine();
-            // this loop makes sure that the user guess is y or n and will re-do the l
-                if (string.Equals(play, "y") && score.ScoreValue > 0){
+                // this loop makes sure that the user guess is y or n and will re-do the l
+                if (string.Equals(play, "n") || score.ScoreValue == 0){
+                    choice = false;
+                    IsPlaying = false;
+                    return "gameover";
+                }
+               else if (string.Equals(play, "y") && score.ScoreValue > 0){
                     choice = false;
                     IsPlaying = true;
                 }
-                else if (string.Equals(play, "n") || score.ScoreValue == 0){
-                    choice = false;
-                    IsPlaying = false;
-                }
                 else {
                     choice = true;                    
-                    Console.WriteLine("Enter a valid input such as y or n");                
+                    Console.WriteLine("Enter a valid input (y/n)");                
                     }            
-                    }            
-                    Console.Write("Will the next card be high or low?");    
-                    bool loop = true;            
-                    while (loop){                
-                // this loop makes sure that the user guess is h or l and will re-do the loop if otherwise
-                    string Guess = Console.ReadLine();
+                }            
+            Console.Write("Will the next card be high or low? (h/l) ");    
+            Console.WriteLine($"The previous card was [{deck.PrevDraw}]");
+            deck.draw();
+            
 
-                if (string.Equals(Guess, "h")){
+            bool loop = true;     
+            string UserGuess = "";     
+            while (loop){                
+        // this loop makes sure that the user guess is h or l and will re-do the loop if otherwise
+                UserGuess = Console.ReadLine();
+
+                if (string.Equals(UserGuess, "h")){
                     loop = false;
                 }
-                else if (string.Equals(Guess, "l") || score.ScoreValue == 0){
+                else if (string.Equals(UserGuess, "l")){
                     loop = false;
                 }
                 else {
                     loop = true;
-                    Console.WriteLine("Enter a valid input such as h or l > ");
+                    Console.WriteLine("Enter a valid input (h/l) ");
                 }
-            
+
             }
-            return Guess;
+            return UserGuess;
             
         }
         public void doUpdates(){
         // takes in the values of the previous draw, the new draw, and the guess
             // it will use the methods further explained in score.csic void doUpdates(Guess){
+
             
             score.IsGuessCorrect(deck.PrevDraw, deck.num, Guess);
             score.UpdateScore();
             
         }
         public void doOutputs(){// prints the updated score
-                        
+
+            Console.WriteLine($"The card is: {deck.num}");
             Console.WriteLine($"Your score is: {score.ScoreValue}");
             if (score.ScoreValue <= 0){
                 Console.WriteLine("You've lost");
