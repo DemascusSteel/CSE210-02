@@ -19,10 +19,14 @@ namespace CSE21002.HiLo{
             }
             else {
                 higher = false;
-            }  
+            }       
 
-            if (Guess == "h" && higher == true || Guess == "l" && higher == false )
+            if (string.Equals(Guess, "h") && higher == true)
             { // if the guess is the same as the card relationship, then the guess is correct
+                IsCorrect = true;
+            }
+            else if  (string.Equals(Guess, "l") && higher == false) 
+            {
                 IsCorrect = true;
             }
             else
@@ -44,3 +48,4 @@ namespace CSE21002.HiLo{
     }
 }
 
+ 
