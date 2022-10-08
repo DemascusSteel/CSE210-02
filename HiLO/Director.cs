@@ -41,7 +41,7 @@ public class Director{
         public string getInputs(){
             //while player continue answer y or score > 0
 
-            Console.WriteLine("Ready to play? y/n:  ");
+            Console.Write("Ready to play? y/n:  ");
             bool choice = true;
             IsPlaying = true; // if they want to keep playing
             while (choice){
@@ -62,7 +62,7 @@ public class Director{
                     }            
                 }            
             Console.Write("Will the next card be high or low? (h/l) ");    
-            Console.WriteLine($"The previous card was [{deck.PrevDraw}]");
+            Console.WriteLine($"The previous card was [{deck.num}]");
             deck.draw();
             
 
@@ -96,14 +96,21 @@ public class Director{
             score.UpdateScore();
             
         }
-        public void doOutputs(){// prints the updated score
+        public void doOutputs(){
+            // prints the updated score
+            if (IsPlaying == true){
 
             Console.WriteLine($"The card is: {deck.num}");
             Console.WriteLine($"Your score is: {score.ScoreValue}");
             if (score.ScoreValue <= 0){
                 Console.WriteLine("You've lost");
                 IsPlaying = false;
-            };
+            }
+            }
+            else
+            {
+                Console.WriteLine("Game Over");
+            }
         }
 
         }
